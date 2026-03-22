@@ -5,15 +5,17 @@ import './JobCard.css';
  * JobCard Component
  * 
  * Premium job card displaying key job information with View, Save, and Apply buttons.
+ * Now includes match score badge.
  * 
  * Props:
  * - job: Object containing job details
+ * - matchScore: Number (0-100) match score
  * - onView: Function to handle view button click
  * - onSave: Function to handle save button click
  * - onApply: Function to handle apply button click
  * - isSaved: Boolean indicating if job is already saved
  */
-const JobCard = ({ job, onView, onSave, onApply, isSaved }) => {
+const JobCard = ({ job, matchScore, onView, onSave, onApply, isSaved }) => {
   // Safe fallbacks for all fields
   const title = job?.title || 'N/A';
   const company = job?.company || 'Unknown Company';
@@ -25,6 +27,14 @@ const JobCard = ({ job, onView, onSave, onApply, isSaved }) => {
   const source = job?.source || 'Unknown';
   const applyUrl = job?.applyUrl || '#';
   
+  // Get match score badge class
+  const getMatchBadgeClass = () => {
+    if (matchScore >= 80) return 'job-card__match-badge--high';
+    if (matchScore >= 60) return 'job-card__match-badge--medium';
+    if (matchScore >= 40) return 'job-card__match-badge--low';
+    return 'job-card__match-badge--very-low';
+  };
+  
   return (
     <div className="job-card">
       <div className="job-card__header">
@@ -32,9 +42,16 @@ const JobCard = ({ job, onView, onSave, onApply, isSaved }) => {
           <h3 className="job-card__title">{title}</h3>
           <span className="job-card__company">{company}</span>
         </div>
-        <span className={`job-card__source job-card__source--${source.toLowerCase()}`}>
-          {source}
-        </span>
+        <div className="job-card__badges">
+          {typeof matchScore === 'number' && (
+            <span className={`job-card__match-badge ${getMatchBadgeClass()}`}>
+              {matchScore}% match
+            </span>
+          )}
+          <span className={`job-card__source job-card__source--${source.toLowerCase()}`}>
+            {source}
+          </span>
+        </div>
       </div>
 
       <div className="job-card__details">

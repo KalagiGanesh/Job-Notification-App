@@ -17,6 +17,7 @@ const FilterBar = ({ filters, onFilterChange }) => {
   const sources = ['LinkedIn', 'Naukri', 'Indeed'];
   const sortOptions = [
     { value: 'latest', label: 'Latest' },
+    { value: 'match-score', label: 'Match Score (High to Low)' },
     { value: 'salary-high', label: 'Salary: High to Low' },
     { value: 'salary-low', label: 'Salary: Low to High' },
     { value: 'company', label: 'Company (A-Z)' }

@@ -18,6 +18,12 @@
   margin-bottom: var(--space-xs);
 }
 
+.job-card__badges {
+  display: flex;
+  gap: var(--space-xs);
+  align-items: center;
+}
+
 .job-card__title-section {
   flex: 1;
 }
@@ -162,6 +168,41 @@
   border-color: var(--color-success);
   color: var(--color-success);
   background-color: var(--color-success-bg);
+}
+
+/* Match Score Badge */
+.job-card__match-badge {
+  font-size: var(--text-xs);
+  padding: 4px var(--space-xs);
+  border-radius: var(--radius-sm);
+  font-weight: var(--font-weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+.job-card__match-badge--high {
+  background-color: #E8F5E9;
+  color: #2E7D32;
+  border: 1px solid #4CAF50;
+}
+
+.job-card__match-badge--medium {
+  background-color: #FFF3E0;
+  color: #EF6C00;
+  border: 1px solid #FF9800;
+}
+
+.job-card__match-badge--low {
+  background-color: #FFF8E1;
+  color: #FBC02D;
+  border: 1px solid #FFC107;
+}
+
+.job-card__match-badge--very-low {
+  background-color: #F5F5F5;
+  color: #9E9E9E;
+  border: 1px solid #BDBDBD;
 }
 
 .job-card__btn--saved:hover {

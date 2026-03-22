@@ -5,6 +5,7 @@ import FilterBar from '../components/ui/FilterBar';
 import JobDetailModal from '../components/ui/JobDetailModal';
 import { jobsData } from '../data/jobsData.jsx';
 import { saveJob, removeJob, isJobSaved } from '../utils/localStorage';
+import { getPreferences, calculateMatchScore, hasPreferences } from '../utils/matchScoreEngine';
 import './DashboardPage.css';
 
 const HomePage = () => {
@@ -30,6 +31,7 @@ const HomePage = () => {
   const [selectedJob, setSelectedJob] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [savedJobs, setSavedJobs] = useState(new Set());
+  const [showOnlyMatches, setShowOnlyMatches] = useState(false);
   const [filters, setFilters] = useState({
     keyword: '',
     location: '',
@@ -38,6 +40,10 @@ const HomePage = () => {
     source: '',
     sort: 'latest'
   });
+  
+  // Get preferences
+  const preferences = getPreferences();
+  const preferencesSet = hasPreferences();
 
   // Safety Guard: Check if jobsData exists and is an array
   if (!jobsData || !Array.isArray(jobsData)) {
@@ -85,7 +91,7 @@ const HomePage = () => {
     window.open(applyUrl, '_blank');
   };
 
-  // Filter and sort jobs
+  // Filter and sort jobs with match scoring
   const filteredJobs = useMemo(() => {
     if (!jobsData || !Array.isArray(jobsData)) {
       console.log('No jobs data available');
@@ -93,7 +99,17 @@ const HomePage = () => {
     }
     
     console.log('Filtering jobs, count:', jobsData.length);
-    let result = [...jobsData];
+    let result = jobsData.map(job => ({
+      ...job,
+      matchScore: preferences ? calculateMatchScore(job, preferences) : 0
+    }));
+
+    // Apply "Show only matches" filter
+    if (showOnlyMatches && preferencesSet) {
+      const minScore = preferences?.minMatchScore || 40;
+      result = result.filter(job => job.matchScore >= minScore);
+      console.log(`After match threshold filter (${minScore}%):`, result.length);
+    }
 
     // Apply keyword filter safely
     if (filters.keyword) {
@@ -130,6 +146,9 @@ const HomePage = () => {
       case 'latest':
         result.sort((a, b) => a.postedDaysAgo - b.postedDaysAgo);
         break;
+      case 'match-score':
+        result.sort((a, b) => b.matchScore - a.matchScore);
+        break;
       case 'salary-high':
         result.sort((a, b) => {
           const getSalaryNum = (salary) => {
@@ -162,6 +181,16 @@ const HomePage = () => {
     <div className="dashboard-page">
       <Workspace>
         <Workspace.Primary>
+          {/* Preferences Banner */}
+          {!preferencesSet && (
+            <div className="dashboard-page__banner">
+              <p className="dashboard-page__banner-message">
+                ⚠️ Set your preferences to activate intelligent matching.
+                <a href="/settings" className="dashboard-page__banner-link"> Go to Settings</a>
+              </p>
+            </div>
+          )}
+          
           <div className="dashboard-page__header">
             <h1 className="dashboard-page__title">Available Positions</h1>
             <p className="dashboard-page__count">
@@ -169,16 +198,31 @@ const HomePage = () => {
             </p>
           </div>
           
+          {/* Show Only Matches Toggle */}
+          {preferencesSet && (
+            <div className="dashboard-page__toggle">
+              <label className="dashboard-page__toggle-label">
+                <input
+                  type="checkbox"
+                  checked={showOnlyMatches}
+                  onChange={(e) => setShowOnlyMatches(e.target.checked)}
+                />
+                <span>Show only jobs above my threshold ({preferences?.minMatchScore || 40}%+)</span>
+              </label>
+            </div>
+          )}
+          
           <FilterBar filters={filters} onFilterChange={handleFilterChange} />
           
           {filteredJobs.length > 0 ? (
             <div className="dashboard-page__jobs">
               {filteredJobs.map((job, index) => {
-                console.log(`Rendering job #${index + 1}:`, job?.id, job?.title, job?.company);
+                console.log(`Rendering job #${index + 1}:`, job?.id, job?.title, job?.company, 'Score:', job.matchScore);
                 return (
                   <JobCard
                     key={job?.id || `job-${index}`}
                     job={job}
+                    matchScore={job.matchScore}
                     onView={handleViewJob}
                     onSave={handleSaveJob}
                     onApply={handleApplyJob}
@@ -190,7 +234,9 @@ const HomePage = () => {
           ) : (
             <div className="dashboard-page__empty">
               <p className="dashboard-page__message">
-                No jobs match your search.
+                {preferencesSet && showOnlyMatches 
+                  ? 'No roles match your criteria. Adjust filters or lower threshold.' 
+                  : 'No jobs match your search.'}
               </p>
             </div>
           )}
