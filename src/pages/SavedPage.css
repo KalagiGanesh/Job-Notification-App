@@ -1,37 +1,79 @@
 /* SavedPage Styles */
 .saved-page {
-  padding: var(--space-xl) var(--space-md);
+  background-color: var(--color-bg-primary);
+  min-height: 100vh;
 }
 
-.saved-page__content {
-  max-width: var(--max-width-text);
-  margin: 0 auto;
+.saved-page__header {
+  margin-bottom: var(--space-md);
 }
 
 .saved-page__title {
-  font-size: var(--text-2xl);
-  font-weight: var(--font-weight-semibold);
   font-family: var(--font-heading);
+  font-size: var(--text-xl);
+  font-weight: var(--font-weight-semibold);
   color: var(--color-text-primary);
-  margin-bottom: var(--space-md);
-  letter-spacing: -0.5px;
+  margin: 0 0 var(--space-xs) 0;
+  line-height: var(--line-height-tight);
+}
+
+.saved-page__count {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+.saved-page__jobs {
+  display: flex;
+  flex-direction: column;
 }
 
 .saved-page__empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
   padding: var(--space-lg);
   text-align: center;
 }
 
 .saved-page__message {
   font-size: var(--text-base);
-  color: var(--color-text-secondary);
+  font-family: var(--font-heading);
+  color: var(--color-text-primary);
   line-height: var(--line-height-relaxed);
-  margin-bottom: var(--space-sm);
+  margin: 0 0 var(--space-xs) 0;
 }
 
 .saved-page__submessage {
   font-size: var(--text-sm);
   color: var(--color-text-tertiary);
+  line-height: var(--line-height-relaxed);
+  margin: 0;
+}
+
+.saved-page__sidebar {
+  background-color: var(--color-bg-secondary);
+  padding: var(--space-md);
+  border: 1px solid var(--color-border);
+  height: fit-content;
+  position: sticky;
+  top: var(--space-md);
+}
+
+.saved-page__sidebar-title {
+  font-family: var(--font-heading);
+  font-size: var(--text-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-sm) 0;
+  line-height: var(--line-height-tight);
+}
+
+.saved-page__sidebar-text {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
   line-height: var(--line-height-relaxed);
   margin: 0;
 }

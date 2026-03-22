@@ -16,7 +16,7 @@ const NavBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navLinks = [
-    { path: '/', label: 'Dashboard' },
+    { path: '/dashboard', label: 'Dashboard' },
     { path: '/saved', label: 'Saved' },
     { path: '/digest', label: 'Digest' },
     { path: '/settings', label: 'Settings' },
