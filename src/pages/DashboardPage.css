@@ -1,0 +1,22 @@
+/* DashboardPage Styles */
+.dashboard-page {
+  background-color: var(--color-bg-primary);
+  min-height: 100vh;
+}
+
+.dashboard-page__empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: var(--space-lg);
+}
+
+.dashboard-page__message {
+  font-size: var(--text-base);
+  font-family: var(--font-heading);
+  color: var(--color-text-secondary);
+  line-height: var(--line-height-relaxed);
+  margin: 0;
+  text-align: center;
+}

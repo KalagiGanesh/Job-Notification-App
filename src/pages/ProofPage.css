@@ -1,0 +1,37 @@
+/* ProofPage Styles */
+.proof-page {
+  padding: var(--space-xl) var(--space-md);
+}
+
+.proof-page__content {
+  max-width: var(--max-width-text);
+  margin: 0 auto;
+}
+
+.proof-page__title {
+  font-size: var(--text-2xl);
+  font-weight: var(--font-weight-semibold);
+  font-family: var(--font-heading);
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-md);
+  letter-spacing: -0.5px;
+}
+
+.proof-page__empty {
+  padding: var(--space-lg);
+  text-align: center;
+}
+
+.proof-page__message {
+  font-size: var(--text-base);
+  color: var(--color-text-secondary);
+  line-height: var(--line-height-relaxed);
+  margin-bottom: var(--space-sm);
+}
+
+.proof-page__submessage {
+  font-size: var(--text-sm);
+  color: var(--color-text-tertiary);
+  line-height: var(--line-height-relaxed);
+  margin: 0;
+}

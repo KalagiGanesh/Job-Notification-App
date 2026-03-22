@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import NavBar from './components/layout/NavBar';
+import LandingPage from './pages/LandingPage';
 import HomePage from './pages/HomePage';
 import SavedPage from './pages/SavedPage';
 import DigestPage from './pages/DigestPage';
@@ -19,7 +20,7 @@ function App() {
         {/* Main Content Area */}
         <main className="app__main">
           <Routes>
-            <Route path="/" element={<HomePage />} />
+            <Route path="/" element={<LandingPage />} />
             <Route path="/dashboard" element={<HomePage />} />
             <Route path="/saved" element={<SavedPage />} />
             <Route path="/digest" element={<DigestPage />} />
