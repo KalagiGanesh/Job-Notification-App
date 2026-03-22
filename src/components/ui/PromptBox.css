@@ -1,0 +1,51 @@
+/* PromptBox Styles */
+.prompt-box {
+  background-color: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.prompt-box__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-sm) var(--space-md);
+  background-color: var(--color-bg-tertiary);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.prompt-box__label {
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+}
+
+.prompt-box__copy-btn {
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-accent);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-fast);
+}
+
+.prompt-box__copy-btn:hover {
+  background-color: rgba(139, 0, 0, 0.08);
+}
+
+.prompt-box__content {
+  padding: var(--space-md);
+  overflow-x: auto;
+}
+
+.prompt-box__text {
+  font-family: 'Monaco', 'Menlo', monospace;
+  font-size: var(--text-sm);
+  color: var(--color-text-primary);
+  line-height: var(--line-height-base);
+  word-break: break-word;
+}

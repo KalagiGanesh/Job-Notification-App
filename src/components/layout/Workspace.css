@@ -1,0 +1,26 @@
+/* Workspace Styles */
+.workspace {
+  display: grid;
+  grid-template-columns: 7fr 3fr;
+  gap: var(--space-lg);
+  padding: var(--space-md);
+  max-width: var(--max-width-content);
+  margin: 0 auto;
+  flex: 1;
+}
+
+.workspace__primary {
+  min-width: 0;
+}
+
+.workspace__secondary {
+  min-width: 0;
+}
+
+/* Responsive: Stack on smaller screens */
+@media (max-width: 1024px) {
+  .workspace {
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+  }
+}

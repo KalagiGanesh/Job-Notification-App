@@ -1,0 +1,30 @@
+/* TopBar Styles */
+.top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-sm) var(--space-md);
+  background-color: var(--color-bg-secondary);
+  border-bottom: 1px solid var(--color-border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.top-bar__left,
+.top-bar__right {
+  flex: 1;
+}
+
+.top-bar__center {
+  flex: 2;
+  display: flex;
+  justify-content: center;
+}
+
+.top-bar__title {
+  font-size: var(--text-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  margin: 0;
+}

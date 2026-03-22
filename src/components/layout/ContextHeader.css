@@ -1,0 +1,22 @@
+/* ContextHeader Styles */
+.context-header {
+  padding: var(--space-lg) var(--space-md);
+  max-width: var(--max-width-text);
+  margin: 0 auto;
+}
+
+.context-header__title {
+  font-size: var(--text-2xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-sm);
+  letter-spacing: -0.5px;
+}
+
+.context-header__subtitle {
+  font-size: var(--text-base);
+  color: var(--color-text-secondary);
+  line-height: var(--line-height-relaxed);
+  margin: 0;
+  max-width: 640px;
+}
