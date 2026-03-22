@@ -1,0 +1,27 @@
+/* PagePlaceholder Styles */
+.page-placeholder {
+  padding: var(--space-xl) var(--space-md);
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+}
+
+.page-placeholder__content {
+  width: 100%;
+}
+
+.page-placeholder__title {
+  font-size: var(--text-2xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-sm);
+  letter-spacing: -0.5px;
+}
+
+.page-placeholder__subtitle {
+  font-size: var(--text-base);
+  color: var(--color-text-secondary);
+  line-height: var(--line-height-relaxed);
+  margin: 0;
+  max-width: 640px;
+}
