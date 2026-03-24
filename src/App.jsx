@@ -7,6 +7,8 @@ import SavedPage from './pages/SavedPage';
 import DigestPage from './pages/DigestPage';
 import SettingsPage from './pages/SettingsPage';
 import ProofPage from './pages/ProofPage';
+import TestChecklistPage from './pages/TestChecklistPage';
+import ShipLockPage from './pages/ShipLockPage';
 import NotFoundPage from './pages/NotFoundPage';
 import ErrorBoundary from './components/ui/ErrorBoundary';
 import './App.css';
@@ -29,6 +31,8 @@ function App() {
               <Route path="/digest" element={<DigestPage />} />
               <Route path="/settings" element={<SettingsPage />} />
               <Route path="/proof" element={<ProofPage />} />
+              <Route path="/jt/07-test" element={<TestChecklistPage />} />
+              <Route path="/jt/08-ship" element={<ShipLockPage />} />
               <Route path="*" element={<NotFoundPage />} />
             </Routes>
           </main>
