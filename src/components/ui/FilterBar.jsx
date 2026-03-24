@@ -15,6 +15,8 @@ const FilterBar = ({ filters, onFilterChange }) => {
   const modes = ['Remote', 'Hybrid', 'Onsite'];
   const experiences = ['Fresher', '0-1', '1-3', '3-5'];
   const sources = ['LinkedIn', 'Naukri', 'Indeed'];
+  // Status options with EXACT string literals matching JOB_STATUSES
+  const statuses = ['Not Applied', 'Applied', 'Rejected', 'Selected'];
   const sortOptions = [
     { value: 'latest', label: 'Latest' },
     { value: 'match-score', label: 'Match Score (High to Low)' },
@@ -77,6 +79,17 @@ const FilterBar = ({ filters, onFilterChange }) => {
           <option value="">All Sources</option>
           {sources.map((src) => (
             <option key={src} value={src}>{src}</option>
+          ))}
+        </select>
+
+        <select
+          className="filter-bar__select"
+          value={filters.status}
+          onChange={(e) => onFilterChange('status', e.target.value)}
+        >
+          <option value="">All Statuses</option>
+          {statuses.map((status) => (
+            <option key={status} value={status}>{status}</option>
           ))}
         </select>
 

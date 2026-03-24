@@ -1,0 +1,78 @@
+/* StatusButtonGroup Component - Premium Design System */
+.status-button-group {
+  display: flex;
+  gap: var(--space-xs);
+  flex-wrap: wrap;
+}
+
+.status-button-group__btn {
+  padding: var(--space-xs) var(--space-sm);
+  font-size: var(--text-xs);
+  font-weight: var(--font-weight-medium);
+  border-radius: var(--radius-sm);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  background-color: var(--color-bg-secondary);
+  color: var(--color-text-secondary);
+  min-width: 85px;
+}
+
+.status-button-group__btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.status-button-group__btn--active {
+  font-weight: var(--font-weight-semibold);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* Status Colors - Premium Design System */
+/* Not Applied - Neutral/Gray */
+.status-button-group__btn--neutral {
+  background-color: #f5f5f5;
+  color: #757575;
+}
+
+.status-button-group__btn--neutral.status-button-group__btn--active {
+  background-color: #e0e0e0;
+  color: #424242;
+  border-color: #bdbdbd;
+}
+
+/* Applied - Blue */
+.status-button-group__btn--applied {
+  background-color: #e3f2fd;
+  color: #1976d2;
+}
+
+.status-button-group__btn--applied.status-button-group__btn--active {
+  background-color: #1976d2;
+  color: white;
+  border-color: #1565c0;
+}
+
+/* Rejected - Red */
+.status-button-group__btn--rejected {
+  background-color: #ffebee;
+  color: #d32f2f;
+}
+
+.status-button-group__btn--rejected.status-button-group__btn--active {
+  background-color: #d32f2f;
+  color: white;
+  border-color: #c62828;
+}
+
+/* Selected - Green (Premium Design System) */
+.status-button-group__btn--selected {
+  background-color: #e8f5e9;
+  color: #388e3c;
+}
+
+.status-button-group__btn--selected.status-button-group__btn--active {
+  background-color: #388e3c;
+  color: white;
+  border-color: #2e7d32;
+}

@@ -4,7 +4,7 @@ import JobCard from '../components/ui/JobCard';
 import FilterBar from '../components/ui/FilterBar';
 import JobDetailModal from '../components/ui/JobDetailModal';
 import { jobsData } from '../data/jobsData.jsx';
-import { saveJob, removeJob, isJobSaved } from '../utils/localStorage';
+import { saveJob, removeJob, isJobSaved, getJobStatus, setJobStatus } from '../utils/localStorage';
 import { getPreferences, calculateMatchScore, hasPreferences } from '../utils/matchScoreEngine';
 import './DashboardPage.css';
 
@@ -38,6 +38,7 @@ const HomePage = () => {
     mode: '',
     experience: '',
     source: '',
+    status: '',  // Add status filter
     sort: 'latest'
   });
   
@@ -91,6 +92,16 @@ const HomePage = () => {
     window.open(applyUrl, '_blank');
   };
 
+  // Handle status change - saves to localStorage and logs activity
+  const handleStatusChange = (jobId, status) => {
+    // This will save to localStorage using jobStatus_${jobId} key
+    // and automatically record in activity log
+    setJobStatus(jobId, status);
+    
+    // Force re-render to update the UI
+    forceUpdate(n => n + 1);
+  };
+
   // Filter and sort jobs with match scoring
   const filteredJobs = useMemo(() => {
     if (!jobsData || !Array.isArray(jobsData)) {
@@ -139,6 +150,14 @@ const HomePage = () => {
     // Apply source filter safely
     if (filters.source) {
       result = result.filter(job => job?.source === filters.source);
+    }
+
+    // Apply status filter (AND logic with all other filters)
+    if (filters.status) {
+      result = result.filter(job => {
+        const jobStatus = getJobStatus(job?.id);
+        return jobStatus === filters.status;
+      });
     }
 
     // Apply sorting
@@ -227,6 +246,8 @@ const HomePage = () => {
                     onSave={handleSaveJob}
                     onApply={handleApplyJob}
                     isSaved={isJobSaved(job?.id)}
+                    currentStatus={getJobStatus(job?.id)}
+                    onStatusChange={handleStatusChange}
                   />
                 );
               })}

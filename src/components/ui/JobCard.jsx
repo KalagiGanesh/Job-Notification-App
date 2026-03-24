@@ -1,11 +1,12 @@
 import React from 'react';
 import './JobCard.css';
+import StatusButtonGroup from './StatusButtonGroup';
 
 /**
  * JobCard Component
  * 
  * Premium job card displaying key job information with View, Save, and Apply buttons.
- * Now includes match score badge.
+ * Now includes match score badge and application status tracking.
  * 
  * Props:
  * - job: Object containing job details
@@ -14,8 +15,10 @@ import './JobCard.css';
  * - onSave: Function to handle save button click
  * - onApply: Function to handle apply button click
  * - isSaved: Boolean indicating if job is already saved
+ * - currentStatus: String - Current application status (from JOB_STATUSES)
+ * - onStatusChange: Function to handle status change (jobId, status) => void
  */
-const JobCard = ({ job, matchScore, onView, onSave, onApply, isSaved }) => {
+const JobCard = ({ job, matchScore, onView, onSave, onApply, isSaved, currentStatus, onStatusChange }) => {
   // Safe fallbacks for all fields
   const title = job?.title || 'N/A';
   const company = job?.company || 'Unknown Company';
@@ -34,6 +37,20 @@ const JobCard = ({ job, matchScore, onView, onSave, onApply, isSaved }) => {
     if (matchScore >= 40) return 'job-card__match-badge--low';
     return 'job-card__match-badge--very-low';
   };
+
+  // Get status badge class for display
+  const getStatusBadgeClass = () => {
+    switch (currentStatus) {
+      case 'Applied':
+        return 'job-card__status-badge--applied';
+      case 'Rejected':
+        return 'job-card__status-badge--rejected';
+      case 'Selected':
+        return 'job-card__status-badge--selected';
+      default:
+        return 'job-card__status-badge--neutral';
+    }
+  };
   
   return (
     <div className="job-card">
@@ -46,6 +63,11 @@ const JobCard = ({ job, matchScore, onView, onSave, onApply, isSaved }) => {
           {typeof matchScore === 'number' && (
             <span className={`job-card__match-badge ${getMatchBadgeClass()}`}>
               {matchScore}% match
+            </span>
+          )}
+          {currentStatus && (
+            <span className={`job-card__status-badge ${getStatusBadgeClass()}`}>
+              {currentStatus}
             </span>
           )}
           <span className={`job-card__source job-card__source--${source.toLowerCase()}`}>
@@ -97,6 +119,18 @@ const JobCard = ({ job, matchScore, onView, onSave, onApply, isSaved }) => {
           Apply
         </button>
       </div>
+
+      {/* Status Tracking Section */}
+      {onStatusChange && (
+        <div className="job-card__status-section">
+          <label className="job-card__status-label">Application Status:</label>
+          <StatusButtonGroup
+            jobId={job?.id || ''}
+            currentStatus={currentStatus}
+            onStatusChange={onStatusChange}
+          />
+        </div>
+      )}
     </div>
   );
 };

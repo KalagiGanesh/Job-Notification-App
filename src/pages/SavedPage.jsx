@@ -3,7 +3,7 @@ import Workspace from '../components/layout/Workspace';
 import JobCard from '../components/ui/JobCard';
 import JobDetailModal from '../components/ui/JobDetailModal';
 import { jobsData } from '../data/jobsData.jsx';
-import { getSavedJobs, removeJob, isJobSaved } from '../utils/localStorage';
+import { getSavedJobs, removeJob, isJobSaved, getJobStatus, setJobStatus } from '../utils/localStorage';
 import './SavedPage.css';
 
 const SavedPage = () => {
@@ -29,6 +29,7 @@ const SavedPage = () => {
   const [selectedJob, setSelectedJob] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [, forceUpdate] = React.useState(0);
+  const [lastStatusChange, setLastStatusChange] = useState(Date.now());
 
   // Safety Guard: Check if jobsData exists and is an array
   if (!jobsData || !Array.isArray(jobsData)) {
@@ -49,6 +50,14 @@ const SavedPage = () => {
     // Load saved jobs on mount
     const saved = getSavedJobs();
     setSavedJobIds(saved);
+    
+    // Listen for storage changes from other tabs/pages
+    const handleStorageChange = () => {
+      setLastStatusChange(Date.now());
+    };
+    
+    window.addEventListener('storage', handleStorageChange);
+    return () => window.removeEventListener('storage', handleStorageChange);
   }, []);
 
   const handleViewJob = (job) => {
@@ -73,6 +82,16 @@ const SavedPage = () => {
     window.open(applyUrl, '_blank');
   };
 
+  // Handle status change - saves to localStorage using unified key
+  const handleStatusChange = (jobId, status) => {
+    // This will save to localStorage using jobTrackerStatus_${jobId} key
+    setJobStatus(jobId, status);
+    
+    // Trigger re-render to update UI immediately
+    setLastStatusChange(Date.now());
+    forceUpdate(n => n + 1);
+  };
+
   // Get full job objects for saved IDs
   const savedJobs = useMemo(() => {
     if (!jobsData || !Array.isArray(jobsData)) {
@@ -82,7 +101,7 @@ const SavedPage = () => {
     const result = jobsData.filter(job => savedJobIds.includes(job?.id));
     console.log('SavedPage: Saved jobs count:', result.length);
     return result;
-  }, [savedJobIds]);
+  }, [savedJobIds, lastStatusChange]);  // Re-calculate when status changes
 
   return (
     <div className="saved-page">
@@ -107,6 +126,8 @@ const SavedPage = () => {
                     onSave={handleSaveJob}
                     onApply={handleApplyJob}
                     isSaved={true}
+                    currentStatus={getJobStatus(job?.id)}
+                    onStatusChange={handleStatusChange}
                   />
                 );
               })}

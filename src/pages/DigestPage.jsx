@@ -8,6 +8,8 @@ import {
   formatDigestAsText,
   createEmailDraft
 } from '../utils/digestEngine';
+import { getRecentActivityLog } from '../utils/localStorage';
+import { jobsData } from '../data/jobsData.jsx';
 import './DigestPage.css';
 
 const DigestPage = () => {
@@ -17,6 +19,7 @@ const DigestPage = () => {
   const [loading, setLoading] = useState(false);
   const [copied, setCopied] = useState(false);
   const [error, setError] = useState(null);
+  const [activityLog, setActivityLog] = useState([]);
   
   // Check if preferences exist (simple localStorage check)
   const preferencesSet = (() => {
@@ -39,6 +42,10 @@ const DigestPage = () => {
       } else {
         console.log('No existing digest found');
       }
+      
+      // Load recent activity log (last 5 updates)
+      const activities = getRecentActivityLog(5);
+      setActivityLog(activities);
     } catch (err) {
       console.error('Error loading digest in useEffect:', err);
       setError('Failed to load digest');
@@ -297,6 +304,38 @@ const DigestPage = () => {
                 Demo Mode: Daily 9AM trigger simulated manually.
               </p>
             </div>
+
+            {/* Recent Status Updates Section */}
+            {activityLog && activityLog.length > 0 ? (
+              <div className="digest-page__status-section">
+                <h2 className="digest-page__section-title">Recent Status Updates</h2>
+                <div className="digest-page__status-list">
+                  {activityLog.map((activity, index) => {
+                    const job = jobsData.find(j => j.id === activity.jobId);
+                    return (
+                      <div key={index} className="digest-page__status-item">
+                        <div className="digest-page__status-content">
+                          <span className={`digest-page__status-badge digest-page__status-badge--${activity.newStatus.toLowerCase().replace(' ', '-')}`}>
+                            {activity.newStatus}
+                          </span>
+                          <span className="digest-page__status-job">
+                            {job ? job.title : 'Unknown Job'}
+                            {job && ` • ${job.company}`}
+                          </span>
+                          <span className="digest-page__status-date">
+                            {activity.date} at {activity.time}
+                          </span>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            ) : (
+              <div className="digest-page__status-section digest-page__status-section--empty">
+                <p className="digest-page__status-empty">No recent activity recorded.</p>
+              </div>
+            )}
 
             {/* Action Buttons */}
             <div className="digest-page__actions">

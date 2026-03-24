@@ -336,3 +336,109 @@
   line-height: var(--line-height-relaxed);
   margin: 0;
 }
+
+/* Recent Status Updates Section */
+.digest-page__status-section {
+  margin-top: var(--space-lg);
+  padding-top: var(--space-lg);
+  border-top: 2px solid var(--color-border);
+}
+
+.digest-page__section-title {
+  font-family: var(--font-heading);
+  font-size: var(--text-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-md);
+}
+
+.digest-page__status-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.digest-page__status-item {
+  background-color: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: var(--space-sm) var(--space-md);
+  transition: transform var(--transition-fast);
+}
+
+.digest-page__status-item:hover {
+  transform: translateX(4px);
+  border-color: var(--color-accent);
+}
+
+.digest-page__status-content {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+}
+
+.digest-page__status-badge {
+  font-size: var(--text-xs);
+  padding: 4px var(--space-xs);
+  border-radius: var(--radius-sm);
+  font-weight: var(--font-weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+.digest-page__status-badge--not-applied {
+  background-color: #f5f5f5;
+  color: #757575;
+  border: 1px solid #e0e0e0;
+}
+
+.digest-page__status-badge--applied {
+  background-color: #e3f2fd;
+  color: #1976d2;
+  border: 1px solid #90caf9;
+}
+
+.digest-page__status-badge--rejected {
+  background-color: #ffebee;
+  color: #d32f2f;
+  border: 1px solid #ef5350;
+}
+
+.digest-page__status-badge--selected {
+  background-color: #e8f5e9;
+  color: #388e3c;
+  border: 1px solid #66bb6a;
+}
+
+.digest-page__status-job {
+  flex: 1;
+  font-size: var(--text-sm);
+  color: var(--color-text-primary);
+  font-weight: var(--font-weight-medium);
+  min-width: 200px;
+}
+
+.digest-page__status-date {
+  font-size: var(--text-xs);
+  color: var(--color-text-tertiary);
+  font-style: italic;
+  white-space: nowrap;
+}
+
+/* Empty State */
+.digest-page__status-section--empty {
+  text-align: center;
+  padding: var(--space-lg);
+  background-color: var(--color-bg-secondary);
+  border-radius: var(--radius-sm);
+  border: 1px dashed var(--color-border);
+}
+
+.digest-page__status-empty {
+  font-size: var(--text-sm);
+  color: var(--color-text-tertiary);
+  margin: 0;
+  font-style: italic;
+}

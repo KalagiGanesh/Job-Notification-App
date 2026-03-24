@@ -209,3 +209,55 @@
   background-color: var(--color-success-bg);
   color: var(--color-success);
 }
+
+/* Status Badge - Display only */
+.job-card__status-badge {
+  font-size: var(--text-xs);
+  padding: 4px var(--space-xs);
+  border-radius: var(--radius-sm);
+  font-weight: var(--font-weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+.job-card__status-badge--neutral {
+  background-color: #f5f5f5;
+  color: #757575;
+  border: 1px solid #e0e0e0;
+}
+
+.job-card__status-badge--applied {
+  background-color: #e3f2fd;
+  color: #1976d2;
+  border: 1px solid #90caf9;
+}
+
+.job-card__status-badge--rejected {
+  background-color: #ffebee;
+  color: #d32f2f;
+  border: 1px solid #ef5350;
+}
+
+.job-card__status-badge--selected {
+  background-color: #e8f5e9;
+  color: #388e3c;
+  border: 1px solid #66bb6a;
+}
+
+/* Status Section - Button Group Container */
+.job-card__status-section {
+  margin-top: var(--space-sm);
+  padding-top: var(--space-sm);
+  border-top: 1px dashed var(--color-border);
+}
+
+.job-card__status-label {
+  display: block;
+  font-size: var(--text-xs);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-tertiary);
+  margin-bottom: var(--space-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
