@@ -2,7 +2,11 @@ import React from 'react';
 import './ProofFooter.css';
 
 /**
- * ProofFooter Component
+ * ProofFooter Component - KodNest Premium Build System
+ * 
+ * MANDATORY STRUCTURE:
+ * - Persistent sticky footer at bottom
+ * - Checkboxes: [ ] UI Built [ ] Logic Working [ ] Test Passed [ ] Deployed
  * 
  * Usage:
  * <ProofFooter 
@@ -13,9 +17,6 @@ import './ProofFooter.css';
  *     { label: 'Deployed', completed: false }
  *   ]}
  * />
- * 
- * Props:
- * - items: Array<{label: string, completed: boolean}> - Checklist items
  */
 const ProofFooter = ({ items = [] }) => {
   return (

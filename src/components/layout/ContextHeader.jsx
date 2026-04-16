@@ -2,17 +2,17 @@ import React from 'react';
 import './ContextHeader.css';
 
 /**
- * ContextHeader Component
+ * ContextHeader Component - KodNest Premium Build System
+ * 
+ * MANDATORY STRUCTURE:
+ * - Large Serif headline
+ * - 1-line subtext (max-width: 720px)
  * 
  * Usage:
  * <ContextHeader 
  *   title="Setup Your Profile"
  *   subtitle="Complete your professional profile to receive relevant job notifications"
  * />
- * 
- * Props:
- * - title: string - Large serif headline
- * - subtitle: string - One-line subtext
  */
 const ContextHeader = ({ 
   title = 'Context Header',

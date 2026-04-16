@@ -1,9 +1,12 @@
-/* ProofFooter Styles */
+/* ProofFooter Styles - KodNest Premium Build System */
 .proof-footer {
   padding: var(--space-md);
   background-color: var(--color-bg-secondary);
   border-top: 1px solid var(--color-border);
-  margin-top: auto;
+  position: sticky;
+  bottom: 0;
+  z-index: 100;
+  transition: border-color var(--transition-base);
 }
 
 .proof-footer__container {
@@ -39,6 +42,7 @@
 .proof-footer__label {
   font-size: var(--text-sm);
   color: var(--color-text-secondary);
+  font-weight: var(--font-weight-medium);
 }
 
 /* Responsive: Stack on smaller screens */

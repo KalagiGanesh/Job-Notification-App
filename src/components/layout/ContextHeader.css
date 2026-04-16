@@ -1,4 +1,4 @@
-/* ContextHeader Styles */
+/* ContextHeader Styles - KodNest Premium Build System */
 .context-header {
   padding: var(--space-lg) var(--space-md);
   max-width: var(--max-width-text);
@@ -6,17 +6,20 @@
 }
 
 .context-header__title {
+  font-family: var(--font-heading);
   font-size: var(--text-2xl);
   font-weight: var(--font-weight-semibold);
   color: var(--color-text-primary);
   margin-bottom: var(--space-sm);
+  line-height: var(--line-height-tight);
   letter-spacing: -0.5px;
 }
 
 .context-header__subtitle {
+  font-family: var(--font-body);
   font-size: var(--text-base);
   color: var(--color-text-secondary);
   line-height: var(--line-height-relaxed);
   margin: 0;
-  max-width: 640px;
+  max-width: var(--max-width-text);
 }

@@ -1,34 +1,68 @@
-/* Card Styles */
+/* Card Styles - KodNest Premium Build System */
 .card {
   background-color: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
-  transition: box-shadow var(--transition-base);
+  transition: border-color var(--transition-base);
 }
 
-/* Subtle borders, no heavy shadows */
-.card--default {
-  border: 1px solid var(--color-border);
-  box-shadow: var(--shadow-none);
+.card:hover {
+  border-color: var(--color-border-focus);
 }
 
-.card--elevated {
-  border: 1px solid var(--color-border);
-  box-shadow: var(--shadow-subtle);
-}
-
-/* Padding Options */
-.card--padding-none {
-  padding: 0;
-}
-
-.card--padding-sm {
+/* Padding Variants */
+.card--sm {
   padding: var(--space-sm);
 }
 
-.card--padding-md {
+.card--md {
   padding: var(--space-md);
 }
 
-.card--padding-lg {
+.card--lg {
   padding: var(--space-lg);
+}
+
+/* Variant: Default */
+.card--default {
+  /* Default styling already applied */
+}
+
+/* Variant: Elevated - Subtle, no heavy shadows */
+.card--elevated {
+  box-shadow: var(--shadow-subtle);
+}
+
+/* Variant: Outlined - Stronger border */
+.card--outlined {
+  border-width: 2px;
+  border-color: var(--color-border-focus);
+}
+
+/* Interactive Cards */
+.card--interactive {
+  cursor: pointer;
+}
+
+.card--interactive:hover {
+  border-color: var(--color-accent);
+}
+
+/* Card Header */
+.card__header {
+  padding-bottom: var(--space-sm);
+  border-bottom: 1px solid var(--color-border);
+  margin-bottom: var(--space-sm);
+}
+
+/* Card Body */
+.card__body {
+  padding: var(--space-sm) 0;
+}
+
+/* Card Footer */
+.card__footer {
+  padding-top: var(--space-sm);
+  border-top: 1px solid var(--color-border);
+  margin-top: var(--space-sm);
 }

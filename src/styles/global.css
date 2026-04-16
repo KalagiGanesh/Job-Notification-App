@@ -1,4 +1,5 @@
-/* ===== GLOBAL STYLES & RESET ===== */
+/* ===== KODNEST PREMIUM BUILD SYSTEM ===== */
+/* Global Styles & Reset */
 @import '../tokens/design-tokens.css';
 
 /* CSS Reset */
@@ -23,7 +24,7 @@ body {
   min-height: 100vh;
 }
 
-/* Typography */
+/* Typography - Serif headings, Sans-serif body */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
   font-weight: var(--font-weight-semibold);
@@ -52,7 +53,7 @@ p {
   margin-bottom: var(--space-sm);
 }
 
-/* Text blocks max width */
+/* Text blocks max width - 720px */
 .text-block {
   max-width: var(--max-width-text);
 }
@@ -93,7 +94,7 @@ ul, ol {
   padding-left: 0;
 }
 
-/* Buttons */
+/* Buttons - Reset */
 button {
   font-family: inherit;
   cursor: pointer;
@@ -101,7 +102,7 @@ button {
   background: none;
 }
 
-/* Inputs */
+/* Inputs - Reset */
 input, textarea, select {
   font-family: inherit;
   font-size: inherit;
@@ -125,3 +126,27 @@ input, textarea, select {
   margin: 0 auto;
   padding: 0 var(--space-md);
 }
+
+/* KodNest Premium Design System Rules */
+
+/* NO random spacing - only use design token scale */
+/* Allowed: 8px, 16px, 24px, 40px, 64px */
+/* FORBIDDEN: 13px, 27px, 35px, etc. */
+
+/* NO gradients anywhere */
+/* FORBIDDEN: background: linear-gradient(...) */
+
+/* NO glassmorphism */
+/* FORBIDDEN: backdrop-filter: blur(...) */
+
+/* NO heavy shadows */
+/* MAXIMUM: 0 1px 2px rgba(0, 0, 0, 0.04) */
+
+/* NO bounce or elastic animations */
+/* ONLY: ease-in-out transitions, 150-200ms */
+
+/* NO neon colors */
+/* ONLY: Design system color tokens */
+
+/* Consistent 4px border radius everywhere */
+/* NO pill shapes (9999px) */

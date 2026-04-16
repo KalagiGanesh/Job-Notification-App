@@ -2,46 +2,35 @@ import React from 'react';
 import './Workspace.css';
 
 /**
- * Workspace Component
+ * Workspace Component - KodNest Premium Build System
+ * 
+ * MANDATORY LAYOUT:
+ * - Primary Workspace: 70% width (cards/interactions)
+ * - Secondary Panel: 30% width (for prompts/buttons)
  * 
  * Usage:
  * <Workspace>
  *   <Workspace.Primary>
- *     {/* Main content (70%) *}/}
+ *     {/* Main content/cards *\/}
  *   </Workspace.Primary>
  *   <Workspace.Secondary>
- *     {/* Side panel (30%) *}/}
+ *     {/* Sidebar/prompts *\/}
  *   </Workspace.Secondary>
  * </Workspace>
- * 
- * Props:
- * - children: ReactNode - Must contain Primary and Secondary components
  */
 const Workspace = ({ children }) => {
-  return (
-    <div className="workspace">
-      {children}
-    </div>
-  );
+  return <div className="workspace">{children}</div>;
 };
 
-const WorkspacePrimary = ({ children }) => {
-  return (
-    <div className="workspace__primary">
-      {children}
-    </div>
-  );
+const Primary = ({ children }) => {
+  return <div className="workspace__primary">{children}</div>;
 };
 
-const WorkspaceSecondary = ({ children }) => {
-  return (
-    <div className="workspace__secondary">
-      {children}
-    </div>
-  );
+const Secondary = ({ children }) => {
+  return <div className="workspace__secondary">{children}</div>;
 };
 
-Workspace.Primary = WorkspacePrimary;
-Workspace.Secondary = WorkspaceSecondary;
+Workspace.Primary = Primary;
+Workspace.Secondary = Secondary;
 
 export default Workspace;

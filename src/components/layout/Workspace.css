@@ -1,4 +1,6 @@
-/* Workspace Styles */
+/* Workspace Styles - KodNest Premium Build System */
+/* MANDATORY LAYOUT: Primary (70%) + Secondary (30%) */
+
 .workspace {
   display: grid;
   grid-template-columns: 7fr 3fr;

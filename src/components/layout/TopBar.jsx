@@ -4,24 +4,23 @@ import ProgressBar from '../ui/ProgressBar';
 import './TopBar.css';
 
 /**
- * TopBar Component
+ * TopBar Component - KodNest Premium Build System
+ * 
+ * MANDATORY LAYOUT:
+ * - Left: Project name
+ * - Center: Progress indicator Step X/Y
+ * - Right: Status badge
  * 
  * Usage:
  * <TopBar 
- *   appName="Job Notification App"
+ *   appName="KodNest"
  *   currentStep={2}
  *   totalSteps={5}
  *   status="in-progress"
  * />
- * 
- * Props:
- * - appName: string - Application name (left side)
- * - currentStep: number - Current step number
- * - totalSteps: number - Total number of steps
- * - status: 'not-started' | 'in-progress' | 'shipped' - Current status
  */
 const TopBar = ({ 
-  appName = 'Job Notification App',
+  appName = 'KodNest',
   currentStep = 1,
   totalSteps = 5,
   status = 'not-started'
@@ -33,6 +32,9 @@ const TopBar = ({
       </div>
       
       <div className="top-bar__center">
+        <span className="top-bar__progress-text">
+          Step {currentStep} / {totalSteps}
+        </span>
         <ProgressBar current={currentStep} total={totalSteps} />
       </div>
       
